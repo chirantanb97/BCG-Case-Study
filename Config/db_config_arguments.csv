@@ -1,0 +1,9 @@
+Argument_Name,File_Names,File_Write_Path,File_Write_Format
+analytics1,Primary_Person_use,D:\BCG_CaseStudy\Output\Analytics1_sol,csv
+analytics2,Primary_Person_use,D:\BCG_CaseStudy\Output\Analytics2_sol,txt
+analytics3,Primary_Person_use,D:\BCG_CaseStudy\Output\Analytics3_sol,csv
+analytics4,Units_use,D:\BCG_CaseStudy\Output\Analytics4_sol,csv
+analytics5,Units_use;Primary_Person_use,D:\BCG_CaseStudy\Output\Analytics5_sol,csv
+analytics6,Primary_Person_use;Units_use,D:\BCG_CaseStudy\Output\Analytics6_sol,csv
+analytics7,Units_use;Damages_use,D:\BCG_CaseStudy\Output\Analytics7_sol,txt
+analytics8,Units_use;Charges_use;Primary_Person_use,D:\BCG_CaseStudy\Output\Analytics8_sol,csv

@@ -11,6 +11,11 @@ from Analytics.analytics7 import Analytics7
 from Analytics.analytics8 import Analytics8
 import Core.config_load as config_load
 from os import getenv
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), 'Config', '.env')
+load_dotenv(dotenv_path)
 
 #Dictionary to map arguments to the Class name
 driver = {
@@ -24,7 +29,7 @@ driver = {
     'analytics8': Analytics8
 }
 
-#Configuration Object
+# Configuration Object
 conf = SparkConf().setAll(
     [
         ('spark.master', getenv('SPARK_HOST', 'local[1]'),),
@@ -42,7 +47,7 @@ config_path="D:/BCG_CaseStudy/Config/"
 config_df = config_load(conf,config_path+"db_config_paths.csv",config_path+"db_config_arguments.csv")
 
 #If command line arguments are passed 
-if len(sys.argv)>1:
+if len(sys.argv) > 1:
     #Looping the arguments and calling the appropriate Class
     for usecase in sys.argv[1:]:
         if usecase in driver:
@@ -53,13 +58,13 @@ if len(sys.argv)>1:
             config_df_temp = config_df.filter(col("Argument_Name") == usecase)
 
             #If the argument is present in config file
-            if(config_df_temp.count() > 0):
+            if config_df_temp.count() > 0:
 
                 #Creating a list from config table
                 config_list = config_df_temp.collect()
 
                 #Checking if multiple files needs to be loaded
-                if(config_list[0]["File_Names"].find(";") == -1):
+                if config_list[0]["File_Names"].find(";") == -1:
                     #Loading the file
                     bd.read_file(config_list[0]["File_Names"], config_list[0]["Files_Read_Path"],\
                                  config_list[0]["File_Read_Format"])
@@ -93,13 +98,13 @@ else:
         config_df_temp = config_df.filter(col("Argument_Name") == usecase)
 
         #If the argument is present in config file
-        if(config_df_temp.count() > 0):
+        if config_df_temp.count() > 0:
 
             #Creating a list from config table
             config_list = config_df_temp.collect()
 
             #Checking if multiple files needs to be loaded
-            if(config_list[0]["File_Names"].find(";") == -1):
+            if config_list[0]["File_Names"].find(";") == -1:
                 #Loading the file
                 bd.read_file(config_list[0]["File_Names"], config_list[0]["Files_Read_Path"], \
                             config_list[0]["File_Read_Format"])

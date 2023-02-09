@@ -58,7 +58,7 @@ class BaseDriver:
         """
 
         #If format is csv then the dataframe is saved as csv
-        if(format.lower() == "csv"):
+        if format.lower() == "csv":
             dataframe.write.format("csv").option('header','true').mode("overwrite").save(path)
 
         #else if the format is txt then the string will be written in the text file

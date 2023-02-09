@@ -18,7 +18,7 @@ def config_load(conf,config_path,config_argument):
     temp=[]
     for rows in config_argument_df.collect():
         row_dict = rows.asDict()
-        if(row_dict["File_Names"].find(";") == -1):
+        if row_dict["File_Names"].find(";") == -1:
             config_read_paths = config_path_df.filter(col("File_Names") == row_dict["File_Names"])
             row_dict["Files_Read_Path"] = config_read_paths.collect()[0]["Files_Read_Path"]
             row_dict["File_Read_Format"] = config_read_paths.collect()[0]["File_Read_Format"]
